@@ -1,0 +1,267 @@
+"use client";
+
+import { useState, useCallback, useEffect, useRef } from 'react';
+import useEmblaCarousel from 'embla-carousel-react';
+import Autoplay from 'embla-carousel-autoplay'; // Import the Autoplay plugin
+import { BicepsFlexed, Bone, Milk, Zap, ChevronLeft, ChevronRight } from "lucide-react"
+import Image from "next/image"
+import GridPattern from "@/components/ui/GridPattern"
+import { motion, useInView } from 'framer-motion';
+
+const leftFeatures = [
+  {
+    name: "Puritate Naturală",
+    description: "Lapte de vacă pasteurizat, plin de calciu pentru oase puternice. Puritate naturală, respectând armonia organică a ingredientelor.",
+    icon: Milk,
+  },
+  {
+    name: "Gust Autentic, Energie Curată",
+    description: "Gust autentic din tradiția de 30 de ani. Sursă de energie naturală pentru o zi plină de vitalitate și stare de bine.",
+    icon: Zap,
+  },
+];
+
+const rightFeatures = [
+  {
+    name: "Vitamine și Minerale",
+    description: "Lapte curat, prin procese atente ce păstrează vitaminele și mineralele. Pentru nutriție echilibrată și un organism puternic.",
+    icon: Bone,
+  },
+  {
+    name: "Sănătate din Natură, Zilnic",
+    description: "Bogat în proteine pentru mușchi și o bună dispoziție. Un aliment organic, pentru un stil de viață activ.",
+    icon: BicepsFlexed,
+  },
+];
+
+const products = [
+  {
+    id: 1,
+    name: "Lapte Proaspăt",
+    description: "Lapte de vacă pasteurizat, plin de calciu pentru oase puternice. Proaspăt zilnic de la ferma noastră.",
+    image: "/images/tetrabrik.png"
+  },
+  {
+    id: 2,
+    name: "Unt Proaspăt",
+    description: "Unt cremos și delicios, obținut din smântână proaspătă. Perfect pentru pâine proaspătă sau gătit.",
+    image: "/images/butter.png"
+  }
+];
+
+export default function Features() {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
+  const autoplay = useRef(Autoplay(
+    { delay: 5000, stopOnInteraction: false, stopOnMouseEnter: true }
+  ));
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    { loop: true, align: 'start' },
+    [autoplay.current]
+  );
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  
+  // Start autoplay when component mounts and is in view
+  useEffect(() => {
+    if (isInView && emblaApi) {
+      autoplay.current.play();
+    }
+    
+    return () => {
+      if (emblaApi) {
+        autoplay.current.stop();
+      }
+    };
+  }, [isInView, emblaApi]);
+
+  const scrollPrev = useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev();
+  }, [emblaApi]);
+
+  const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext();
+  }, [emblaApi]);
+
+  const scrollTo = useCallback((index: number) => {
+    if (emblaApi) emblaApi.scrollTo(index);
+  }, [emblaApi]);
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setSelectedIndex(emblaApi.selectedScrollSnap());
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    onSelect();
+    emblaApi.on('select', onSelect);
+    
+    // Re-enable autoplay after user interaction
+    const handlePointerDown = () => {
+      autoplay.current.stop();
+    };
+    
+    const handlePointerUp = () => {
+      autoplay.current.play();
+    };
+    
+    emblaApi.on('pointerDown', handlePointerDown);
+    emblaApi.on('pointerUp', handlePointerUp);
+    
+    return () => {
+      emblaApi.off('select', onSelect);
+      emblaApi.off('pointerDown', handlePointerDown);
+      emblaApi.off('pointerUp', handlePointerUp);
+    };
+  }, [emblaApi, onSelect]);
+
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2
+      }
+    }
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: 20 },
+    show: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.16, 1, 0.3, 1]
+      }
+    }
+  };
+
+  return (
+    <div className="border-t relative py-12 overflow-hidden">
+      {/* Dot Pattern Background */}
+      <GridPattern className="absolute inset-0 z-[5] pointer-events-none" />
+
+      <div className="container relative z-10" ref={ref}>
+        <motion.div
+          initial="hidden"
+          animate={isInView ? "show" : "hidden"}
+          variants={container}
+          className="space-y-4"
+        >
+          <motion.div 
+            className="relative flex items-center"
+            variants={item}
+          >
+          {/* Left Arrow */}
+          <button 
+            onClick={scrollPrev}
+            className="absolute -left-32 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-background/80 backdrop-blur-md border shadow-lg hover:bg-accent transition-colors"
+            aria-label="Produsul anterior"
+          > 
+            <ChevronLeft className="h-6 w-6" />
+          </button>
+          
+          <div className="w-full">
+            <motion.section 
+              className="relative space-y-12 py-16 px-12
+                         bg-background/80 backdrop-blur-lg rounded-2xl 
+                         border border-border shadow-xl w-full max-w-[2000px] mx-auto"
+              variants={item}
+            >
+              <div className="relative">
+                <div className="overflow-hidden" ref={emblaRef}>
+                  <motion.div 
+                    className="flex w-full"
+                    variants={item}
+                  >
+                    {products.map((product) => (
+                      <div key={product.id} className="flex-[0_0_100%] min-w-0 px-4">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-6xl w-full mx-auto">
+                          {/* Left side - Product Image */}
+                          <motion.div 
+                            className="flex justify-center items-center"
+                            variants={item}
+                          >
+                            <div className="relative h-[32rem] w-full">
+                              <Image
+                                src={product.image}
+                                alt={product.name}
+                                fill
+                                className="object-contain"
+                              />
+                            </div>
+                          </motion.div>
+
+                          {/* Right side - Content */}
+                          <motion.div 
+                            className="space-y-6"
+                            variants={item}
+                          >
+                            {/* Feature Icons Row */}
+                            <div className="flex gap-2">
+                              {[...leftFeatures, ...rightFeatures].map((feature, index) => (
+                                <div
+                                  key={feature.name}
+                                  className="flex items-center gap-2 bg-white/80 rounded-xl border-[1.5px] border-gray-200/40 p-1.5 pr-3"
+                                >
+                                  <div className="p-1.4 rounded-lg text-sky-500">
+                                    <feature.icon className="h-4 w-4" />
+                                  </div>
+                                  <span className="text-xs font-medium text-gray-600">
+                                    {feature.name.split(' ')[0]}
+                                  </span>
+                                </div>
+                              ))}
+                            </div>
+                            
+                            <h2 className="font-bold text-3xl leading-[1.1] sm:text-4xl md:text-5xl text-left">
+                              {product.name}
+                            </h2>
+                            
+                            <p className="text-muted-foreground text-lg leading-relaxed">
+                              {product.description}
+                            </p>
+                          </motion.div>
+                        </div>
+                      </div>
+                    ))}
+                  </motion.div>
+                </div>
+              </div>
+            </motion.section>
+
+            {/* Dots Navigation */}
+            <motion.div 
+              className="flex justify-center gap-2 mt-8"
+              variants={item}
+            >
+              {products.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => scrollTo(index)}
+                  className={`h-2.5 w-2.5 rounded-full transition-colors ${
+                    index === selectedIndex ? 'bg-primary w-6' : 'bg-muted-foreground/30'
+                  }`}
+                  aria-label={`Mergi la produsul ${index + 1}`}
+                />
+              ))}
+            </motion.div>
+          </div>
+
+          {/* Right Arrow */}
+          <motion.button 
+            onClick={scrollNext}
+            className="absolute -right-32 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-background/80 backdrop-blur-md border shadow-lg hover:bg-accent transition-colors"
+            aria-label="Următorul produs"
+            variants={item}
+          >
+            <ChevronRight className="h-6 w-6" />
+          </motion.button>
+          </motion.div>
+        </motion.div>
+      </div>
+    </div>
+  );
+}
