@@ -27,12 +27,12 @@ export default function Hero() {
   }, [])
 
   return (
-    <section className="container relative flex min-h-[calc(100vh-3.5rem)] max-w-screen-2xl flex-col items-center justify-center space-y-8 py-24 text-center md:py-32">
+    <section id="hero" className="container relative flex min-h-[calc(100vh-3.5rem)] max-w-screen-xl flex-col items-center justify-center space-y-6 py-16 text-center md:py-24">
       {/* Background gradients */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-b from-background via-background/90 to-background" />
-        <div className="absolute right-[-150px] top-0 h-[500px] w-[500px] bg-fuchsia-500/10 blur-[100px]" />
-        <div className="absolute bottom-0 left-[-150px] h-[500px] w-[500px] bg-blue-500/10 blur-[100px]" />
+        <div className="absolute right-[-100px] top-0 h-[400px] w-[400px] bg-fuchsia-500/10 blur-[80px]" />
+        <div className="absolute bottom-0 left-[-100px] h-[400px] w-[400px] bg-blue-500/10 blur-[80px]" />
       </div>
       <div className="relative z-10 flex flex-col items-center justify-center gap-8">
         {/* Logo */}
@@ -58,12 +58,12 @@ export default function Hero() {
               textVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
             }`}
           >
-            <h1 className="pluto font-medium bg-gradient-to-br from-foreground from-30% via-foreground/90 to-foreground/70 bg-clip-text text-4xl font-bold tracking-tight text-transparent sm:text-5xl md:text-6xl lg:text-7xl">
+            <h1 className="pluto font-medium bg-gradient-to-br from-foreground from-30% via-foreground/90 to-foreground/70 bg-clip-text text-3xl font-bold tracking-tight text-transparent sm:text-4xl md:text-5xl lg:text-6xl">
               Lactate de la
               <br />
               Teaca
             </h1>
-            <p className="mx-auto max-w-[42rem] leading-normal text-muted-foreground sm:text-xl sm:leading-8">
+            <p className="mx-auto max-w-[36rem] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
             Lactate de la Teaca oferă produse tradiționale din lapte, proaspete și naturale, obținute din ferme locale din inima Transilvaniei. Gustul autentic și rețetele curate aduc savoarea de odinioară direct pe masa ta
             </p>
           </div>
@@ -74,11 +74,11 @@ export default function Hero() {
               textVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
             }`}
           >
-            <Button size="lg">
+            <Button size="sm">
               Exploreaza Produsele
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
-            <Button variant="outline" size="lg">
+            <Button variant="outline" size="sm">
               Vezi istoria
             </Button>
           </div>

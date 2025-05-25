@@ -9,25 +9,25 @@ export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-14 max-w-screen-2xl items-center">
-        <Link href="/" className="mr-auto md:mr-6 flex items-center space-x-2">
-          <span className="pluto font-medium">Lactate de la Teaca</span>
+    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 h-12">
+      <div className="container flex h-12 max-w-screen-2xl items-center">
+        <Link href="#hero" className="mr-auto md:mr-6 flex items-center space-x-2">
+          <span className="pluto font-medium text-sm">Lactate de la Teaca</span>
         </Link>
-        <nav className="hidden md:flex flex-1 justify-center items-center space-x-6 text-sm font-medium">
-          <Link href="/solutions" className="transition-colors hover:text-primary">
+        <nav className="hidden md:flex flex-1 justify-center items-center space-x-4 text-xs font-medium">
+          <Link href="#hero" className="transition-colors hover:text-primary">
             Despre noi 
           </Link>
-          <Link href="/industries" className="transition-colors hover:text-primary">
+          <Link href="#features" className="transition-colors hover:text-primary">
             Produse
           </Link>
-          <Link href="/about" className="transition-colors hover:text-primary">
+          <Link href="#bento-grids" className="transition-colors hover:text-primary">
             Despre Sinelli
           </Link>
         </nav>
         <div className="hidden md:flex items-center space-x-4 ml-6">
           <Link href="https://www.facebook.com/sinelli.ro" target="_blank" rel="noreferrer">
-            <Button variant="ghost" size="icon">
+            <Button variant="ghost" size="sm">
               <Facebook className="h-4 w-4" />
               <span className="sr-only">Facebook</span>
             </Button>
@@ -52,13 +52,13 @@ export default function Navbar() {
       {isMobileMenuOpen && (
         <div className="md:hidden absolute top-full left-0 right-0 bg-background border-b border-border/40 shadow-lg z-40">
           <nav className="flex flex-col space-y-1 py-3 px-4">
-            <Link href="/solutions" className="py-2 transition-colors hover:text-primary block" onClick={() => setIsMobileMenuOpen(false)}>
+            <Link href="#despre-noi" className="py-2 transition-colors hover:text-primary block" onClick={() => setIsMobileMenuOpen(false)}>
               Despre noi
             </Link>
-            <Link href="/industries" className="py-2 transition-colors hover:text-primary block" onClick={() => setIsMobileMenuOpen(false)}>
+            <Link href="#produse" className="py-2 transition-colors hover:text-primary block" onClick={() => setIsMobileMenuOpen(false)}>
               Produse
             </Link>
-            <Link href="/about" className="py-2 transition-colors hover:text-primary block" onClick={() => setIsMobileMenuOpen(false)}>
+            <Link href="#despre-sinelli" className="py-2 transition-colors hover:text-primary block" onClick={() => setIsMobileMenuOpen(false)}>
               Despre Sinelli
             </Link>
             <div className="border-t border-border/40 mt-2 pt-2"> 

@@ -8,44 +8,106 @@ import Image from "next/image"
 import GridPattern from "@/components/ui/GridPattern"
 import { motion, useInView } from 'framer-motion';
 
-const leftFeatures = [
-  {
-    name: "Puritate Naturală",
-    description: "Lapte de vacă pasteurizat, plin de calciu pentru oase puternice. Puritate naturală, respectând armonia organică a ingredientelor.",
-    icon: Milk,
-  },
-  {
-    name: "Gust Autentic, Energie Curată",
-    description: "Gust autentic din tradiția de 30 de ani. Sursă de energie naturală pentru o zi plină de vitalitate și stare de bine.",
-    icon: Zap,
-  },
-];
+// const leftFeatures = [
+//   {
+//     name: "Puritate Naturală",
+//     description: "Lapte de vacă pasteurizat, plin de calciu pentru oase puternice. Puritate naturală, respectând armonia organică a ingredientelor.",
+//     icon: Milk,
+//   },
+//   {
+//     name: "Gust Autentic, Energie Curată",
+//     description: "Gust autentic din tradiția de 30 de ani. Sursă de energie naturală pentru o zi plină de vitalitate și stare de bine.",
+//     icon: Zap,
+//   },
+// ];
 
-const rightFeatures = [
-  {
-    name: "Vitamine și Minerale",
-    description: "Lapte curat, prin procese atente ce păstrează vitaminele și mineralele. Pentru nutriție echilibrată și un organism puternic.",
-    icon: Bone,
-  },
-  {
-    name: "Sănătate din Natură, Zilnic",
-    description: "Bogat în proteine pentru mușchi și o bună dispoziție. Un aliment organic, pentru un stil de viață activ.",
-    icon: BicepsFlexed,
-  },
-];
+// const rightFeatures = [
+//   {
+//     name: "Vitamine și Minerale",
+//     description: "Lapte curat, prin procese atente ce păstrează vitaminele și mineralele. Pentru nutriție echilibrată și un organism puternic.",
+//     icon: Bone,
+//   },
+//   {
+//     name: "Sănătate din Natură, Zilnic",
+//     description: "Bogat în proteine pentru mușchi și o bună dispoziție. Un aliment organic, pentru un stil de viață activ.",
+//     icon: BicepsFlexed,
+//   },
+// ];
 
 const products = [
   {
     id: 1,
     name: "Lapte Proaspăt",
     description: "Lapte de vacă pasteurizat, plin de calciu pentru oase puternice. Proaspăt zilnic de la ferma noastră.",
-    image: "/images/tetrabrik.png"
+    image: "/images/tetrabrik.png",
+    features: [
+      {
+        name: "Puritate",
+        description: "Lapte pur, fără aditivi, direct de la sursă.",
+        icon: Milk,
+      },
+      {
+        name: "Gust",
+        description: "Gust autentic și proaspăt, ca la țară.",
+        icon: Zap,
+      },
+      {
+        name: "Vitamine",
+        description: "Îmbogățit cu vitamine esențiale pentru sănătate.",
+        icon: Bone,
+      },
+      {
+        name: "Sanatate",
+        description: "Contribuie la o dietă echilibrată și sănătoasă.",
+        icon: BicepsFlexed,
+      }
+    ]
   },
   {
     id: 2,
     name: "Unt Proaspăt",
     description: "Unt cremos și delicios, obținut din smântână proaspătă. Perfect pentru pâine proaspătă sau gătit.",
-    image: "/images/butter.png"
+    image: "/images/butter.png",
+    features: [
+      {
+        name: "Aroma",
+        description: "Aromă bogată și textură cremoasă.",
+        icon: Milk,
+      },
+      {
+        name: "Calcium",
+        description: "Sursă excelentă de calciu pentru oase puternice.",
+        icon: Bone,
+      },
+      {
+        name: "Traditie",
+        description: "Produs după rețete tradiționale.",
+        icon: Zap,
+      }
+    ]
+  },
+  {
+    id: 3,
+    name: "Sana",
+    description: "Sana obținuta din smântână proaspătă. Perfect cu pâine proaspătă.",
+    image: "/images/sana.png",
+    features: [
+      {
+        name: "Probiotice",
+        description: "Conține culturi vii pentru o digestie sănătoasă.",
+        icon: Milk,
+      },
+      {
+        name: "Cremozitate",
+        description: "Textură fină și cremoasă, ideală pentru deserturi.",
+        icon: Zap,
+      },
+      {
+        name: "Energie",
+        description: "Oferă energie naturală pentru întreaga zi.",
+        icon: BicepsFlexed,
+      }
+    ]
   }
 ];
 
@@ -53,7 +115,7 @@ export default function Features() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
   const autoplay = useRef(Autoplay(
-    { delay: 5000, stopOnInteraction: false, stopOnMouseEnter: true }
+    { delay: 4500, stopOnInteraction: true, stopOnMouseEnter: true }
   ));
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { loop: true, align: 'start' },
@@ -75,11 +137,17 @@ export default function Features() {
   }, [isInView, emblaApi]);
 
   const scrollPrev = useCallback(() => {
-    if (emblaApi) emblaApi.scrollPrev();
+    if (emblaApi) {
+      emblaApi.scrollPrev();
+      autoplay.current.reset();
+    }
   }, [emblaApi]);
 
   const scrollNext = useCallback(() => {
-    if (emblaApi) emblaApi.scrollNext();
+    if (emblaApi) {
+      emblaApi.scrollNext();
+      autoplay.current.reset();
+    }
   }, [emblaApi]);
 
   const scrollTo = useCallback((index: number) => {
@@ -139,9 +207,23 @@ export default function Features() {
   };
 
   return (
-    <div className="border-t relative py-12 overflow-hidden">
+    <div id="features" className="border-t relative py-12 overflow-hidden min-h-screen flex items-center justify-center">
       {/* Dot Pattern Background */}
-      <GridPattern className="absolute inset-0 z-[5] pointer-events-none" />
+      <GridPattern dotColor="rgba(53, 53, 53, 0.21)" dotSize="1.05px" spacing="27px" className="absolute inset-0 z-[5] pointer-events-none" />
+
+      {/* Blurry Circle Background */}
+      <motion.div
+        initial="hidden"
+        animate={isInView ? "show" : "hidden"}
+        variants={{
+          hidden: { opacity: 0 },
+          show: { opacity: 1, transition: { duration: 0.8, delay: 0.2 } }
+        }}
+        className="absolute inset-0 flex justify-center items-center"
+      >
+        <div className="h-[50vw] w-[50vw] max-h-[500px] max-w-[500px] bg-gradient-to-r from-blue-400/20 to-cyan-400 rounded-full blur-3xl opacity-25"></div>
+        <div className="h-[40vw] w-[40vw] max-h-[400px] max-w-[400px] bg-gradient-to-r from-red-400 to-orange-400 rounded-full blur-3xl opacity-25"></div>
+      </motion.div>
 
       <div className="container relative z-10" ref={ref}>
         <motion.div
@@ -178,7 +260,7 @@ export default function Features() {
                   >
                     {products.map((product) => (
                       <div key={product.id} className="flex-[0_0_100%] min-w-0 px-4">
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-6xl w-full mx-auto">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-6xl w-full mx-auto flex-wrap">
                           {/* Left side - Product Image */}
                           <motion.div 
                             className="flex justify-center items-center"
@@ -200,8 +282,8 @@ export default function Features() {
                             variants={item}
                           >
                             {/* Feature Icons Row */}
-                            <div className="flex gap-2">
-                              {[...leftFeatures, ...rightFeatures].map((feature, index) => (
+                            <div className="flex flex-wrap gap-2">
+                              {product.features.map((feature, index) => (
                                 <div
                                   key={feature.name}
                                   className="flex items-center gap-2 bg-white/80 rounded-xl border-[1.5px] border-gray-200/40 p-1.5 pr-3"
