@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
-  basePath: '/lacteaca-site',
+  // basePath: '/lacteaca-site', // Comment this out for local development
   images: {
     unoptimized: true,
   },

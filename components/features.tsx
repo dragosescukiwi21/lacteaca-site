@@ -208,7 +208,7 @@ export default function Features() {
 
   return (
     <div id="features" className="border-t relative py-12 overflow-hidden min-h-screen flex items-center justify-center">
-      {/* Dot Pattern Background */}
+      {/* Dot Pattern Background */} 
       <GridPattern dotColor="rgba(53, 53, 53, 0.21)" dotSize="1.05px" spacing="27px" className="absolute inset-0 z-[5] pointer-events-none" />
 
       {/* Blurry Circle Background */}
