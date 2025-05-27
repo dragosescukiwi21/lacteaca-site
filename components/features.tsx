@@ -239,17 +239,18 @@ export default function Features() {
           {/* Left Arrow */}
           <button 
             onClick={scrollPrev}
-            className="absolute -left-32 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-background/80 backdrop-blur-md border shadow-lg hover:bg-accent transition-colors"
+            className="hidden sm:block absolute left-2 sm:-left-8 md:-left-20 top-1/2 -translate-y-1/2 z-20 p-2 sm:p-3 rounded-full bg-background/80 backdrop-blur-md border shadow-lg hover:bg-accent transition-colors"
             aria-label="Produsul anterior"
+            style={{ minWidth: 48 }}
           > 
-            <ChevronLeft className="h-6 w-6" />
+            <ChevronLeft className="h-4 w-4 sm:h-6 sm:w-6" />
           </button>
           
           <div className="w-full">
             <motion.section 
-              className="relative space-y-12 py-16 px-12
+              className="relative space-y-8 sm:space-y-10 py-10 sm:py-12 md:py-16 px-2 sm:px-6 md:px-12
                          bg-background/80 backdrop-blur-lg rounded-2xl 
-                         border border-border shadow-xl w-full max-w-[2000px] mx-auto"
+                         border border-border shadow-xl w-full max-w-[44rem] sm:max-w-[56rem] md:max-w-[72rem] mx-auto min-h-[45rem] sm:min-h-0"
               variants={item}
             >
               <div className="relative">
@@ -260,13 +261,13 @@ export default function Features() {
                   >
                     {products.map((product) => (
                       <div key={product.id} className="flex-[0_0_100%] min-w-0 px-4">
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-6xl w-full mx-auto flex-wrap">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-10 md:gap-12 items-center max-w-[40rem] sm:max-w-[56rem] md:max-w-[84rem] w-full mx-auto flex-wrap">
                           {/* Left side - Product Image */}
                           <motion.div 
                             className="flex justify-center items-center"
                             variants={item}
                           >
-                            <div className="relative h-[32rem] w-full">
+                            <div className="relative h-64 sm:h-90 md:h-[32rem] w-full">
                               <Image
                                 src={product.image}
                                 alt={product.name}
@@ -278,33 +279,35 @@ export default function Features() {
 
                           {/* Right side - Content */}
                           <motion.div 
-                            className="space-y-6"
+                            className="flex flex-col justify-between h-full sm:block sm:h-auto space-y-0 sm:space-y-4 md:space-y-6"
                             variants={item}
                           >
-                            {/* Feature Icons Row */}
-                            <div className="flex flex-wrap gap-2">
-                              {product.features.map((feature, index) => (
-                                <div
-                                  key={feature.name}
-                                  className="flex items-center gap-2 bg-white/80 rounded-xl border-[1.5px] border-gray-200/40 p-1.5 pr-3"
-                                >
-                                  <div className="p-1.4 rounded-lg text-sky-500">
-                                    <feature.icon className="h-4 w-4" />
+                            <div>
+                              {/* Feature Icons Row */}
+                              <div className="flex flex-wrap gap-1 sm:gap-2">
+                                {product.features.map((feature, index) => (
+                                  <div
+                                    key={feature.name}
+                                    className="flex items-center gap-1 sm:gap-2 bg-white/80 rounded-xl border-[1.5px] border-gray-200/60 p-1 sm:p-1.5 pr-2 sm:pr-3"
+                                  >
+                                    <div className="p-1 sm:p-1 rounded-lg text-sky-500">
+                                      <feature.icon className="h-6 w-6 sm:h-4 sm:w-4" />
+                                    </div>
+                                    <span className="text-xs sm:text-xs font-medium text-gray-600">
+                                      {feature.name.split(' ')[0]}
+                                    </span>
                                   </div>
-                                  <span className="text-xs font-medium text-gray-600">
-                                    {feature.name.split(' ')[0]}
-                                  </span>
-                                </div>
-                              ))}
+                                ))}
+                              </div>
                             </div>
-                            
-                            <h2 className="font-bold text-3xl leading-[1.1] sm:text-4xl md:text-5xl text-left">
-                              {product.name}
-                            </h2>
-                            
-                            <p className="text-muted-foreground text-lg leading-relaxed">
-                              {product.description}
-                            </p>
+                            <div className="mt-0 sm:mt-6 md:mt-6">
+                              <h1 className="font-bold text-4xl sm:text-4xl md:text-4xl lg:text-4xl leading-[1.1] text-left px-2 pb-2 pt-4 sm:px-0 sm:pb-0 sm:pt-0 bg-background/80 sm:bg-transparent">
+                                {product.name}
+                              </h1>
+                              <p className="text-muted-foreground text-base sm:text-lg md:text-xl leading-relaxed px-2 pb-4 sm:px-0 sm:pb-0 bg-background/80 sm:bg-transparent">
+                                {product.description}
+                              </p>
+                            </div>
                           </motion.div>
                         </div>
                       </div>
@@ -335,11 +338,12 @@ export default function Features() {
           {/* Right Arrow */}
           <motion.button 
             onClick={scrollNext}
-            className="absolute -right-32 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-background/80 backdrop-blur-md border shadow-lg hover:bg-accent transition-colors"
+            className="hidden sm:block absolute right-2 sm:-right-8 md:-right-20 top-1/2 -translate-y-1/2 z-20 p-2 sm:p-3 rounded-full bg-background/80 backdrop-blur-md border shadow-lg hover:bg-accent transition-colors"
             aria-label="Următorul produs"
             variants={item}
+            style={{ minWidth: 48 }}
           >
-            <ChevronRight className="h-6 w-6" />
+            <ChevronRight className="h-4 w-4 sm:h-6 sm:w-6" />
           </motion.button>
           </motion.div>
         </motion.div>

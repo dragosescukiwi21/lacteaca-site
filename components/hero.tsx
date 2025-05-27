@@ -27,14 +27,16 @@ export default function Hero() {
   }, [])
 
   return (
-    <section id="hero" className="container relative flex min-h-[calc(100vh-3.5rem)] max-w-screen-xl flex-col items-center justify-center space-y-6 py-16 text-center md:py-24">
-      {/* Background gradients */}
-      <div className="pointer-events-none absolute inset-0">
+    <section id="hero" className="relative min-h-[calc(100vh-3.5rem)] flex flex-col items-center justify-center py-16 text-center md:py-24 overflow-x-hidden">
+      {/* Background gradients and blurry circles, now outside the container */}
+      <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-gradient-to-b from-background via-background/90 to-background" />
-        <div className="absolute right-[-100px] top-0 h-[400px] w-[400px] bg-fuchsia-500/10 blur-[80px]" />
-        <div className="absolute bottom-0 left-[-100px] h-[400px] w-[400px] bg-blue-500/10 blur-[80px]" />
+        {/* Right blurry circle */}
+        <div className="absolute top-0 right-0 md:right-[-100px] h-[180px] w-[180px] sm:h-[250px] sm:w-[250px] md:h-[400px] md:w-[400px] bg-fuchsia-500/10 blur-[60px] sm:blur-[80px] max-w-none max-h-none" />
+        {/* Left blurry circle */}
+        <div className="absolute bottom-0 left-0 md:left-[-100px] h-[180px] w-[180px] sm:h-[250px] sm:w-[250px] md:h-[400px] md:w-[400px] bg-blue-500/10 blur-[60px] sm:blur-[80px] max-w-none max-h-none" />
       </div>
-      <div className="relative z-10 flex flex-col items-center justify-center gap-8">
+      <div className="container relative flex flex-col items-center justify-center gap-8 max-w-screen-xl space-y-6">
         {/* Logo */}
         <div 
           className={`transition-opacity duration-1000 ease-in-out -mb-0 ${
