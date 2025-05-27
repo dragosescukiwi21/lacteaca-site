@@ -36,7 +36,7 @@ export default function BentoGrid() {
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-indigo-500/5 to-purple-500/10 z-10">
-                  <GridPattern dotColor={isSelected ? "rgba(255, 0, 0, 0.47)" : "rgba(100, 100, 100, 0.47)"} dotSize="1px" spacing="30px" idSuffix="blue" className="opacity-90" />
+                  <GridPattern dotColor={isSelected ? "rgba(99, 99, 99, 0.21)" : "rgba(100, 100, 100, 0.47)"} dotSize="1px" spacing="30px" idSuffix="blue" className="opacity-90" />
                 </div>
                 
 
@@ -56,7 +56,7 @@ export default function BentoGrid() {
                   animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                   transition={{ duration: 0.6, delay: 0.4 }}
                 >
-                  <div className="absolute inset-0 bg-gradient-to-br from-emerald-400/20 via-green-400/50 to-teal-400/20">
+                  <div className="absolute inset-0 bg-gradient-to-br from-emerald-600/60 via-green-400/50 to-teal-900/60">
                   <GridPattern dotColor="rgba(83, 83, 83, 0.29)" dotSize="1.25px" spacing="28px" idSuffix="orange" className="opacity-90" />
                   </div>
                   <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-indigo-900 to-transparent h-[60%]"></div>
@@ -73,7 +73,7 @@ export default function BentoGrid() {
                   animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                   transition={{ duration: 0.6, delay: 0.6 }}
                 >
-                  <div className="absolute inset-0 bg-gradient-to-br from-amber-800/20 via-red-500/5 to-pink-500/10">
+                  <div className="absolute inset-0 bg-gradient-to-br from-amber-900/40 via-orange-300/60 to-red-500/10">
                     <GridPattern dotColor="rgba(83, 83, 83, 0.29)" dotSize="1.25px" spacing="28px" idSuffix="orange" className="opacity-90" />
                   </div>
                   <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-indigo-900 to-transparent h-[60%]"></div>

@@ -77,11 +77,16 @@ export default function Hero() {
             }`}
           >
             <Button size="sm">
-              Exploreaza Produsele
+              <a href="#features">            
+                Exploreaza Produsele
+              </a>
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
+
             <Button variant="outline" size="sm">
-              Vezi istoria
+              <a href="#bento-grids">            
+                Vezi fabrica
+              </a>            
             </Button>
           </div>
         </div>

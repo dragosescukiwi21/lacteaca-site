@@ -250,7 +250,7 @@ export default function Features() {
             <motion.section 
               className="relative space-y-8 sm:space-y-10 py-10 sm:py-12 md:py-16 px-2 sm:px-6 md:px-12
                          bg-background/80 backdrop-blur-lg rounded-2xl 
-                         border border-border shadow-xl w-full max-w-[44rem] sm:max-w-[56rem] md:max-w-[72rem] mx-auto min-h-[45rem] sm:min-h-0"
+                         border border-border shadow-xl w-full max-w-[44rem] sm:max-w-[56rem] md:max-w-[72rem] mx-auto min-h-[40rem] sm:min-h-0"
               variants={item}
             >
               <div className="relative">
