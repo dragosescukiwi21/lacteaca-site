@@ -33,7 +33,7 @@ export default function Navbar() {
             </Button>
           </Link>
           <Button size="sm">
-            Contact
+          <a href= "mailto:lactomunteanbn@gmail.com">Contact</a>
           </Button>
         </div>
 

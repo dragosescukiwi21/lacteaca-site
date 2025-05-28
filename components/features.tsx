@@ -3,7 +3,9 @@
 import { useState, useCallback, useEffect, useRef } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay'; // Import the Autoplay plugin
-import { BicepsFlexed, Bone, Milk, Zap, ChevronLeft, ChevronRight } from "lucide-react"
+import { BicepsFlexed, Bone, Milk, Zap, ChevronLeft, ChevronRight, Dessert, Wheat, HeartPulse, Sprout} from "lucide-react"
+import { TiktokLogo } from 'phosphor-react';
+
 import Image from "next/image"
 import GridPattern from "@/components/ui/GridPattern"
 import { motion, useInView } from 'framer-motion';
@@ -42,52 +44,75 @@ const products = [
     image: "/images/tetrabrik.png",
     features: [
       {
-        name: "Puritate",
+        name: "Natural",
         description: "Lapte pur, fără aditivi, direct de la sursă.",
-        icon: Milk,
+        icon: Sprout,
       },
       {
         name: "Gust",
         description: "Gust autentic și proaspăt, ca la țară.",
-        icon: Zap,
+        icon: Milk,
       },
       {
         name: "Vitamine",
         description: "Îmbogățit cu vitamine esențiale pentru sănătate.",
-        icon: Bone,
+        icon: BicepsFlexed,
       },
       {
         name: "Sanatate",
         description: "Contribuie la o dietă echilibrată și sănătoasă.",
-        icon: BicepsFlexed,
+        icon: HeartPulse,
       }
     ]
   },
   {
     id: 2,
-    name: "Unt Proaspăt",
-    description: "Unt cremos și delicios, obținut din smântână proaspătă. Perfect pentru pâine proaspătă sau gătit.",
-    image: "/images/butter.png",
+    name: "Brânza frământată",
+    description: "O delicatesă ardelenească din lapte proaspăt, este frământată manual pentru un gust autentic. Textura sa fină și cremoasă dezvăluie o savoare bogată, reflectând tradiția și calitatea pură a zonei Teaca.",
+    image: "/images/branza-fr.png",
     features: [
       {
-        name: "Aroma",
-        description: "Aromă bogată și textură cremoasă.",
+        name: "Gust",
+        description: "Conține culturi vii pentru o digestie sănătoasă.",
         icon: Milk,
       },
       {
-        name: "Calcium",
-        description: "Sursă excelentă de calciu pentru oase puternice.",
-        icon: Bone,
+        name: "Cremozitate",
+        description: "Textură fină și cremoasă, ideală pentru deserturi.",
+        icon: Dessert,
       },
       {
-        name: "Traditie",
-        description: "Produs după rețete tradiționale.",
+        name: "Energie",
+        description: "Oferă energie naturală pentru întreaga zi.",
         icon: Zap,
       }
     ]
   },
   {
     id: 3,
+    name: "Smântână",
+    description: "Smântâna fină și cremoasă concentrează bogăția laptelui, aducând un plus de savoare și textură rafinată. Un deliciu lactat versatil, ideal pentru a completa și îmbogăți gustul preparatelor culinare diverse.",
+    image: "/images/smantana.png",
+    features: [
+      {
+        name: "Gust",
+        description: "Aromă bogată și textură cremoasă.",
+        icon: Milk,
+      },
+      {
+        name: "Bogat in Calciu",
+        description: "Sursă excelentă de calciu pentru oase puternice.",
+        icon: Bone,
+      },
+      {
+        name: "Traditie",
+        description: "Produs după rețete tradiționale.",
+        icon: Wheat,
+      }
+    ]
+  },
+  {
+    id: 4,
     name: "Sana",
     description: "Sana obținuta din smântână proaspătă. Perfect cu pâine proaspătă.",
     image: "/images/sana.png",
@@ -100,13 +125,31 @@ const products = [
       {
         name: "Cremozitate",
         description: "Textură fină și cremoasă, ideală pentru deserturi.",
-        icon: Zap,
+        icon: Dessert,
       },
       {
         name: "Energie",
         description: "Oferă energie naturală pentru întreaga zi.",
-        icon: BicepsFlexed,
+        icon: Zap,
       }
+    ]
+  },
+  {
+    id: 5,
+    name: "Unt",
+    description: "Unt cremos și delicios, obținut din smântână proaspătă. Perfect pentru pâine proaspătă sau gătit.",
+    image: "/images/butter.png",
+    features: [
+      {
+        name: "Gust",
+        description: "Aromă bogată și textură cremoasă.",
+        icon: Milk,
+      },
+      {
+        name: "Bogat in Calciu",
+        description: "Sursă excelentă de calciu pentru oase puternice.",
+        icon: Bone,
+      },
     ]
   }
 ];

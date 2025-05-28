@@ -27,7 +27,7 @@ export default function Hero() {
   }, [])
 
   return (
-    <section id="hero" className="relative min-h-[calc(100vh-3.5rem)] flex flex-col items-center justify-center py-16 text-center md:py-24 overflow-x-hidden">
+    <section id="hero" className="relative min-h-[calc(100vh-3.5rem)] flex flex-col items-center justify-center pt-12 text-center md:py-24 overflow-x-hidden">
       {/* Background gradients and blurry circles, now outside the container */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-gradient-to-b from-background via-background/90 to-background" />
@@ -49,7 +49,7 @@ export default function Hero() {
             width={300} 
             height={300} 
             priority 
-            className="mx-auto"
+            className="mx-auto w-[230px] md:w-[360px] h-auto"
           />
         </div>
 
